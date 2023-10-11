@@ -59,6 +59,18 @@
       "price": 3000,
       "checked": true,
       "id": 11
+    },
+    {
+      "name": "c",
+      "price": 300,
+      "checked": true,
+      "id": 12
+    },
+    {
+      "name": "ca",
+      "price": 700,
+      "checked": false,
+      "id": 13
     }
   ]
 }

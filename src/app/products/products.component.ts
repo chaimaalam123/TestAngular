@@ -27,18 +27,33 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
   getProducts() {
+    // this.appState.setProductState ({
+    //   status:"LOADING"
+    // });
     this.productService.getProducts(this.appState.productState.keyword, this.appState.productState.currentPage, this.appState.productState.pageSize).subscribe(
       {
         next: (response) => {
-          this.appState.productState.products = response.body as Product[];
+          let products = response.body as Product[];
           let totalProducts: number = parseInt(response.headers.get('x-total-count')!);
-          this.appState.productState.totalProducts = totalProducts;
-          this.appState.productState.totalPages = Math.floor(totalProducts / this.appState.productState.pageSize);
+          // this.appState.productState.totalProducts = totalProducts;
+          let totalPages = Math.floor(totalProducts / this.appState.productState.pageSize);
           if (totalProducts % this.appState.productState.pageSize != 0) {
-            this.appState.productState.totalPages += 1;
+            ++totalPages;
           }
+          this.appState.setProductState({
+            products:products,
+            totalProducts:totalProducts,
+            totalPages:totalPages,
+            // status:"LOADED"
+          })
         },
-        error: err => { console.log(err) }
+        error: err => { 
+          this.appState.setProductState ({
+            status:"ERROR",
+            errorMessage:err
+          });
+          // console.log(err) 
+        }
       },
     );
   }
