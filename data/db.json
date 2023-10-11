@@ -4,19 +4,13 @@
       "id": 1,
       "name": "Product 1",
       "price": 10.99,
-      "checked": false
+      "checked": true
     },
     {
       "id": 2,
       "name": "Pc",
       "price": 200,
-      "checked": true
-    },
-    {
-      "name": "Product 3",
-      "price": 40000,
-      "checked": true,
-      "id": 3
+      "checked": false
     },
     {
       "name": "Product 4",
